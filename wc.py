@@ -35,34 +35,34 @@ if len(sys.argv) > 1:
     DIE = True
 
 LIST = ( # List of questions
-#   Software
-"Target administrator account name",#1
-"New administrator password",#2
-"Confirm new administrator password",#3
-"Current user account name",#4
-"Computer Name",#5
-"Windows version",#6
-"Creation time of folder \"System32\" (HH:MM:SS)",#7
-"Last Windows Update actualisation date (YYYY-MM-DD)",#8
-"Build number of last Windows Update actualisation",#9
-#   Hardware
-"Total size of installed RAM (GB)",#10
-"Number of installed RAM modules",#11
-"Hard drive serial number",#12
-"Motherboard vendor",#13
-"Motherboard serial number",#14
-"GPU vendor",#15
-"GPU serial number",#16
-"Keyboard vendor",#17
-"Mouse vendor",#18
-"Mouse serial number",#19
-#   Net
-"Computer IP address",#20
-"Computer MAC address",#21
-#   BIOS
-"Bios vendor",#22
-"Current date (YYYY-MM-DD)",#23
-"Current time (HH:MM:SS)",#24
+  #   Software
+  "Target administrator account name",#1
+  "New administrator password",#2
+  "Confirm new administrator password",#3
+  "Current user account name",#4
+  "Computer Name",#5
+  "Windows version",#6
+  "Creation time of folder \"System32\" (HH:MM:SS)",#7
+  "Last Windows Update actualisation date (YYYY-MM-DD)",#8
+  "Build number of last Windows Update actualisation",#9
+  #   Hardware
+  "Total size of installed RAM (GB)",#10
+  "Number of installed RAM modules",#11
+  "Hard drive serial number",#12
+  "Motherboard vendor",#13
+  "Motherboard serial number",#14
+  "GPU vendor",#15
+  "GPU serial number",#16
+  "Keyboard vendor",#17
+  "Mouse vendor",#18
+  "Mouse serial number",#19
+  #   Net
+  "Computer IP address",#20
+  "Computer MAC address",#21
+  #   BIOS
+  "Bios vendor",#22
+  "Current date (YYYY-MM-DD)",#23
+  "Current time (HH:MM:SS)",#24
 )
 def convert(list):
   out = []
@@ -176,9 +176,9 @@ class App(Frame):
       else:
         if DELAY:
           if DELAY > 15:
-            sleep(number//15)
+            self.wait(number//15)
           else:
-            sleep(number)
+            self.wait(number)
         self.newRow()
         Label(self,
           text = self.list[number]
@@ -202,7 +202,7 @@ class App(Frame):
       number //= 4
       number
     if DELAY:
-      sleep(3)
+      self.wait(3)
     self.bttn['state'] = DISABLED
     self.bttn['text'] = "Error!"
     self.ent['state'] = DISABLED
@@ -251,6 +251,12 @@ class App(Frame):
       if x < 50:
         run(['shutdown', '-r', '-t', '0'])
         sys.exit()
+  def wait(self, time: int): 
+    """Waits some time"""
+    i = 0
+    while(i <= time):
+      sleep(1)
+      i += 1
 
 def main():
   root = Root("Windows Cracker")
